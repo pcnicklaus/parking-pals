@@ -4,54 +4,17 @@ import { StyleSheet, Text, View, Alert } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { Provider } from 'react-redux';
 
-import registerForNotifications from './services/push_notifications';
 import store from './store';
 import NeedPalScreen from './screens/NeedPalScreen';
-import AuthScreen from './screens/AuthScreen';
-import WelcomeScreen from './screens/WelcomeScreen';
 import MapScreen from './screens/MapScreen';
-import DeckScreen from './screens/DeckScreen';
-import SettingsScreen from './screens/SettingsScreen';
-import ReviewScreen from './screens/ReviewScreen';
 
 class App extends React.Component {
-  componentDidMount() {
-    registerForNotifications();
-    Notifications.addListener((notification) => {
-      const { data: { text }, origin } = notification;
 
-      if (origin === 'received' && text) {
-        Alert.alert(
-          'New Push Notification',
-          text,
-          [{ text: 'Ok.' }]
-        );
-      }
-    });
-  }
 
   render() {
     const MainNavigator = TabNavigator({
       needPal: { screen: NeedPalScreen },
       map: { screen: MapScreen },
-      auth: { screen: AuthScreen },
-      main: {
-        screen: TabNavigator({
-          maptoo: { screen: MapScreen },
-          deck: { screen: DeckScreen },
-          review: {
-            screen: StackNavigator({
-              review: { screen: ReviewScreen },
-              settings: { screen: SettingsScreen }
-            })
-          }
-        }, {
-          tabBarPosition: 'bottom',
-          tabBarOptions: {
-            labelStyle: { fontSize: 12 }
-          }
-        })
-      }
     }, {
       navigationOptions: {
         tabBar: { visible: false }

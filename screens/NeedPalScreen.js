@@ -30,9 +30,9 @@ class NeedPalScreen extends Component {
       address:  { label: 'where is your car?', placeholder: '200 Blake St' },
       carMake:  { label: 'who makes your car?', placeholder: 'Volvo' },
       carModel: { label: 'what model is it?', placeholder: 'S70' },
-      carColor: { label: 'what color', placeholder: 'Bright Pink' },
-      timeLeft: { label: 'one hour', placeholder: 'An hour' },
-      reward:   { label: 'filler reward', placeholder: 'A dollar' }
+      carColor: { label: 'what color?', placeholder: 'Bright Pink' },
+      timeLeft: { label: 'when does it expire?', placeholder: '3:30pm' },
+      reward:   { label: 'any filler reward?', placeholder: 'A dollar' }
     }
   }
 
@@ -45,8 +45,6 @@ class NeedPalScreen extends Component {
     console.log('address\n', address)
 
     this.props.createBlankMarker(address, this.state.value, () => { this.props.navigation.navigate('map') });
-
-
 
     // this.props.navigation.navigate('map')
   }
